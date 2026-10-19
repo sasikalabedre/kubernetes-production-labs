@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-file-config
+  namespace: production-labs
+data:
+  app.properties: |
+    APP_NAME=my-kubernetes-app
+    APP_ENV=development
+    LOG_LEVEL=info

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: graceful-shutdown-demo
+  namespace: production-labs
+spec:
+  terminationGracePeriodSeconds: 30
+  containers:
+    - name: app
+      image: busybox:1.36
+      command:
+        - sh
+        - -c
+        - |
+          trap 'echo "SIGTERM received; shutting down gracefully"; sleep 5; exit 0' TERM
+          echo "Application started"
+          while true; do sleep 1; done

@@ -1,0 +1,10 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: rolling-update-pdb
+  namespace: production-labs
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: rolling-update-demo

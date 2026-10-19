@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: env-demo
+  namespace: production-labs
+spec:
+  containers:
+    - name: app
+      image: busybox:1.36
+      command: ["sh", "-c", "sleep 3600"]
+      env:
+        - name: APP_NAME
+          value: my-kubernetes-app
+        - name: APP_ENV
+          value: development
+        - name: LOG_LEVEL
+          value: info
