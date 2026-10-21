@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-lb-client
+  namespace: production-labs
+spec:
+  podSelector:
+    matchLabels:
+      app: clusterip-demo
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              run: lb-test-client
+      ports:
+        - protocol: TCP
+          port: 80

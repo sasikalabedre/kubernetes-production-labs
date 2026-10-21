@@ -1,0 +1,23 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resource-requests-demo
+  namespace: production-labs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resource-requests-demo
+  template:
+    metadata:
+      labels:
+        app: resource-requests-demo
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "128Mi"

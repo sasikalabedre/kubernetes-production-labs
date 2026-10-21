@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hpa-load-test
+  namespace: production-labs
+  labels:
+    app: hpa-load-test
+spec:
+  containers:
+    - name: cpu-loader
+      image: busybox:1.36
+      command:
+        - /bin/sh
+        - -c
+        - while true; do :; done
+      resources:
+        requests:
+          cpu: 100m
+          memory: 32Mi
+        limits:
+          cpu: 500m
+          memory: 64Mi

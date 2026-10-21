@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-tls-ingress
+  namespace: production-labs
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - web.local
+      secretName: web-local-tls
+  rules:
+    - host: web.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: clusterip-demo-svc
+                port:
+                  number: 80

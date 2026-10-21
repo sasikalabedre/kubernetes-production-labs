@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeport-demo-svc
+  namespace: production-labs
+spec:
+  type: NodePort
+  selector:
+    app: clusterip-demo
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080

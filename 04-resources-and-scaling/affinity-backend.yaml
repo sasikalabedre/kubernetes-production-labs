@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: affinity-backend
+  namespace: production-labs
+  labels:
+    app: backend
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.27
+      resources:
+        requests:
+          cpu: 100m
+          memory: 64Mi

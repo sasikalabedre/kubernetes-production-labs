@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: topology-spread-demo
+  namespace: production-labs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: topology-spread-demo
+  template:
+    metadata:
+      labels:
+        app: topology-spread-demo
+    spec:
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              app: topology-spread-demo
+      containers:
+        - name: nginx
+          image: nginx:1.27
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi

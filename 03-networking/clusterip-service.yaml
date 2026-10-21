@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: clusterip-demo-svc
+  namespace: production-labs
+spec:
+  type: ClusterIP
+  selector:
+    app: clusterip-demo
+  ports:
+    - port: 80
+      targetPort: 80
